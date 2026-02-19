@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="CollegeSphere - Modern College Management System. Access student portal, teacher portal, and admin dashboard.">
+  <meta name="keywords" content="college management, education, student portal, teacher portal">
+  <title>CollegeSphere - Modern College Management System</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #818cf8;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gradient: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+      --gradient-dark: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* NAVIGATION */
+    .navbar {
+      padding: 1rem 0;
+      background: white;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 0.5rem 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .navbar-brand {
+      font-family: 'Poppins', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary) !important;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 45px;
+      height: 45px;
+      background: var(--gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--dark);
+      font-weight: 500;
+      padding: 8px 20px;
+      margin: 0 5px;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: var(--primary);
+      background: rgba(99, 102, 241, 0.1);
+    }
+
+    .btn-login {
+      padding: 10px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+      transition: all 0.3s;
+    }
+
+    .btn-login:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-signup {
+      padding: 10px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      transition: all 0.3s;
+    }
+
+    .btn-signup:hover {
+      background: var(--gradient-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      padding: 100px 0 80px;
+      background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: var(--gradient);
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: var(--dark);
+    }
+
+    .hero-title .highlight {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: #64748b;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero {
+      padding: 16px 40px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+
+    .btn-primary-hero {
+      background: var(--gradient);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary-hero:hover {
+      background: var(--gradient-dark);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-outline-hero {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-outline-hero:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.3);
+    }
+
+    .hero-image {
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+    }
+
+    /* PORTALS SECTION */
+    .portals-section {
+      padding: 80px 0;
+      background: white;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--dark);
+    }
+
+    .section-title p {
+      font-size: 18px;
+      color: #64748b;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .portal-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s;
+      text-align: center;
+      border: 2px solid transparent;
+      height: 100%;
+    }
+
+    .portal-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      border-color: var(--primary);
+    }
+
+    .portal-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 30px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: white;
+      position: relative;
+    }
+
+    .portal-card.student .portal-icon {
+      background: linear-gradient(135deg, #6366f1, #818cf8);
+    }
+
+    .portal-card.teacher .portal-icon {
+      background: linear-gradient(135deg, #10b981, #34d399);
+    }
+
+    .portal-card.admin .portal-icon {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    }
+
+    .portal-card h3 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--dark);
+    }
+
+    .portal-card p {
+      color: #64748b;
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+
+    .portal-card ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .portal-card ul li {
+      padding: 10px 0;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .portal-card ul li i {
+      color: var(--primary);
+      font-size: 18px;
+    }
+
+    .btn-portal {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+
+    .portal-card.student .btn-portal {
+      background: var(--gradient);
+      color: white;
+      border: none;
+    }
+
+    .portal-card.teacher .btn-portal {
+      background: linear-gradient(135deg, #10b981, #34d399);
+      color: white;
+      border: none;
+    }
+
+    .portal-card.admin .btn-portal {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: white;
+      border: none;
+    }
+
+    .btn-portal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* FEATURES SECTION */
+    .features-section {
+      padding: 80px 0;
+      background: var(--light);
+    }
+
+    .feature-box {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      text-align: center;
+      transition: all 0.3s;
+      margin-bottom: 30px;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 36px;
+      color: white;
+    }
+
+    .feature-box h4 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .feature-box p {
+      color: #64748b;
+      margin: 0;
+    }
+
+    /* STATS SECTION */
+    .stats-section {
+      padding: 80px 0;
+      background: var(--gradient);
+      color: white;
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #1e293b;
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer h5 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: white;
+    }
+
+    .footer-about p {
+      color: #cbd5e1;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 8px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .footer-contact {
+      margin-bottom: 16px;
+      color: #cbd5e1;
+      display: flex;
+      align-items: start;
+      gap: 12px;
+    }
+
+    .footer-contact i {
+      color: var(--secondary);
+      margin-top: 4px;
+      font-size: 18px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 40px;
+      padding-top: 30px;
+      text-align: center;
+      color: #cbd5e1;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+      }
+
+      .portal-card {
+        margin-bottom: 30px;
+      }
+
+      .stat-number {
+        font-size: 36px;
+      }
+    }
+
+    /* Animations */
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient);
+      color: white;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 999;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .scroll-to-top.show {
+      display: flex;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <div class="brand-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        CollegeSphere
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#courses">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#portals">Portals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+
+        <div class="d-flex gap-2">
+          <a href="admin/login.php" class="btn btn-login">Login</a>
+          <a href="student/signup.php" class="btn btn-signup">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section" id="home">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="hero-content fade-in-up">
+            <h1 class="hero-title">
+              Welcome to <span class="highlight">CollegeSphere</span>
+            </h1>
+            <p class="hero-subtitle">
+              A comprehensive college management system that streamlines student enrollment, faculty management,
+              attendance tracking, and financial operations - all in one powerful platform.
+            </p>
+            <div class="hero-buttons">
+              <a href="#portals" class="btn btn-primary-hero btn-hero">
+                <i class="fas fa-rocket me-2"></i>Get Started
+              </a>
+              <a href="#about" class="btn btn-outline-hero btn-hero">
+                <i class="fas fa-play-circle me-2"></i>Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hero-image">
+            <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+              <!-- Modern illustration of education/college -->
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#818cf8;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+
+              <!-- Building -->
+              <rect x="100" y="150" width="300" height="200" fill="url(#grad1)" rx="10" />
+              <rect x="120" y="170" width="60" height="80" fill="#fff" opacity="0.3" rx="5" />
+              <rect x="220" y="170" width="60" height="80" fill="#fff" opacity="0.3" rx="5" />
+              <rect x="320" y="170" width="60" height="80" fill="#fff" opacity="0.3" rx="5" />
+
+              <!-- Flag -->
+              <rect x="240" y="100" width="5" height="50" fill="#4f46e5" />
+              <polygon points="245,100 245,120 275,110" fill="#ef4444" />
+
+              <!-- Students -->
+              <circle cx="180" cy="320" r="15" fill="#10b981" />
+              <circle cx="250" cy="320" r="15" fill="#f59e0b" />
+              <circle cx="320" cy="320" r="15" fill="#6366f1" />
+
+              <!-- Books -->
+              <rect x="50" y="280" width="30" height="40" fill="#818cf8" rx="2" />
+              <rect x="420" y="280" width="30" height="40" fill="#34d399" rx="2" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTALS SECTION -->
+  <section class="portals-section" id="portals">
+    <div class="container">
+      <div class="section-title">
+        <h2>Choose Your Portal</h2>
+        <p>Access the system through your dedicated portal with role-based features and permissions</p>
+      </div>
+
+      <div class="row">
+        <!-- Student Portal -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="portal-card student">
+            <div class="portal-icon">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <h3>Student Portal</h3>
+            <p>Access your academic records, attendance, marks, and more</p>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> View Attendance & Marks</li>
+              <li><i class="fas fa-check-circle"></i> Download Timetable</li>
+              <li><i class="fas fa-check-circle"></i> Fee Payment Status</li>
+              <li><i class="fas fa-check-circle"></i> Course Materials</li>
+              <li><i class="fas fa-check-circle"></i> Notices & Announcements</li>
+            </ul>
+            <a href="student/login.php" class="btn btn-portal">
+              <i class="fas fa-sign-in-alt me-2"></i>Student Sign Up
+            </a>
+          </div>
+        </div>
+
+        <!-- Teacher Portal -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="portal-card teacher">
+            <div class="portal-icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h3>Teacher Portal</h3>
+            <p>Manage classes, attendance, and student performance</p>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Mark Attendance</li>
+              <li><i class="fas fa-check-circle"></i> Enter Marks & Grades</li>
+              <li><i class="fas fa-check-circle"></i> View Class Schedules</li>
+              <li><i class="fas fa-check-circle"></i> Student Reports</li>
+              <li><i class="fas fa-check-circle"></i> Upload Course Materials</li>
+            </ul>
+            <a href="teacher/login.php" class="btn btn-portal">
+              <i class="fas fa-sign-in-alt me-2"></i>Teacher Login
+            </a>
+          </div>
+        </div>
+
+        <!-- Admin Portal -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="portal-card admin">
+            <div class="portal-icon">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <h3>Admin Portal</h3>
+            <p>Complete system control and management dashboard</p>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> Manage Students & Faculty</li>
+              <li><i class="fas fa-check-circle"></i> Financial Management</li>
+              <li><i class="fas fa-check-circle"></i> Generate Reports</li>
+              <li><i class="fas fa-check-circle"></i> System Configuration</li>
+              <li><i class="fas fa-check-circle"></i> Complete Analytics</li>
+            </ul>
+            <a href="admin/login.php" class="btn btn-portal">
+              <i class="fas fa-shield-alt me-2"></i>Admin Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features-section" id="courses">
+    <div class="container">
+      <div class="section-title">
+        <h2>Powerful Features</h2>
+        <p>Everything you need to manage your institution efficiently</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h4>Student Management</h4>
+            <p>Complete student records with enrollment, attendance, and performance tracking</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <h4>Attendance Tracking</h4>
+            <p>Digital attendance system with real-time reporting and analytics</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-wallet"></i>
+            </div>
+            <h4>Fee Management</h4>
+            <p>Automated fee collection, payment tracking, and financial reporting</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4>Performance Analytics</h4>
+            <p>Comprehensive reports and analytics for data-driven decisions</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
+            <h4>Examination System</h4>
+            <p>Manage exams, marks entry, grade cards, and result publication</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h4>Timetable Management</h4>
+            <p>Create and manage class schedules with conflict detection</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-bell"></i>
+            </div>
+            <h4>Notice Board</h4>
+            <p>Instant announcements and notifications to students and staff</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h4>Course Management</h4>
+            <p>Organize courses, subjects, and curriculum efficiently</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="stat-box">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Modules</div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="stat-box">
+            <div class="stat-number">150+</div>
+            <div class="stat-label">Active Students</div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="stat-box">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Faculty Members</div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="stat-box">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Departments</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="portals-section" id="about">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4">
+          <h2 class="mb-4">About CollegeSphere</h2>
+          <p class="lead mb-4">A modern, comprehensive college management system designed to streamline educational
+            institution operations.</p>
+          <p>CollegeSphere provides a unified platform for managing all aspects of college administration - from student
+            enrollment and attendance tracking to financial management and academic performance monitoring.</p>
+          <p>Built with cutting-edge technology and user-centric design, our system ensures efficiency, transparency,
+            and ease of use for administrators, teachers, and students alike.</p>
+          <div class="mt-4">
+            <a href="#portals" class="btn btn-primary-hero btn-hero">Explore Portals</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="feature-box">
+                <h3 class="text-primary">100%</h3>
+                <p>Secure & Reliable</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="feature-box">
+                <h3 class="text-success">24/7</h3>
+                <p>Access Anytime</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="feature-box">
+                <h3 class="text-warning">Real-time</h3>
+                <p>Live Updates</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="feature-box">
+                <h3 class="text-danger">Mobile</h3>
+                <p>Responsive Design</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="row">
+        <!-- About -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <h5>
+            <div class="brand-icon d-inline-block me-2" style="width: 35px; height: 35px; font-size: 18px;">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            CollegeSphere
+          </h5>
+          <p class="footer-about">
+            A comprehensive college management system that streamlines educational operations and enhances the learning
+            experience for students, teachers, and administrators.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="#home"><i class="fas fa-angle-right"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-angle-right"></i> About Us</a></li>
+            <li><a href="#courses"><i class="fas fa-angle-right"></i> Courses</a></li>
+            <li><a href="#portals"><i class="fas fa-angle-right"></i> Portals</a></li>
+            <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Courses -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5>Our Courses</h5>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-angle-right"></i> Bachelor of Computer Applications</a></li>
+            <li><a href="#"><i class="fas fa-angle-right"></i> B.Tech Engineering</a></li>
+            <li><a href="#"><i class="fas fa-angle-right"></i> Master of Business Administration</a></li>
+            <li><a href="#"><i class="fas fa-angle-right"></i> Bachelor of Commerce</a></li>
+            <li><a href="#"><i class="fas fa-angle-right"></i> Bachelor of Science</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5>Contact Information</h5>
+          <div class="footer-contact">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              123 Education Street,<br>
+              Mumbai, Maharashtra 400001<br>
+              India
+            </div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-phone"></i>
+            <div>+91 22 1234 5678</div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-envelope"></i>
+            <div>info@collegesphere.edu</div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-globe"></i>
+            <div>www.collegesphere.edu</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 CollegeSphere. All Rights Reserved. | Designed with <i class="fas fa-heart text-danger"></i> by
+          CollegeSphere Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <div class="scroll-to-top" id="scrollToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function () {
+      const navbar = document.querySelector('.navbar');
+      const scrollToTop = document.getElementById('scrollToTop');
+
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      if (window.scrollY > 300) {
+        scrollToTop.classList.add('show');
+      } else {
+        scrollToTop.classList.remove('show');
+      }
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Scroll to top
+    document.getElementById('scrollToTop').addEventListener('click', function () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Active nav link on scroll
+    window.addEventListener('scroll', function () {
+      let sections = document.querySelectorAll('section[id]');
+      let scrollY = window.pageYOffset;
+
+      sections.forEach(section => {
+        let sectionHeight = section.offsetHeight;
+        let sectionTop = section.offsetTop - 100;
+        let sectionId = section.getAttribute('id');
+
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + sectionId) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
